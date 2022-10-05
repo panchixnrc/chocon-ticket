@@ -7,7 +7,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: API_KEY,
+  apiKey: "AIzaSyA9vy8P_GopYZwa3ye-8V-6zrggqfE9hYA" || process.env.API_KEY,
   authDomain: "chocon-ticket.firebaseapp.com",
   projectId: "chocon-ticket",
   storageBucket: "chocon-ticket.appspot.com",
