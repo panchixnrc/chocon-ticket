@@ -1,0 +1,54 @@
+[debug] [2022-10-05T15:46:35.122Z] ----------------------------------------------------------------------
+[debug] [2022-10-05T15:46:35.123Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\fsepulveda\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-10-05T15:46:35.124Z] CLI Version:   11.13.0
+[debug] [2022-10-05T15:46:35.124Z] Platform:      win32
+[debug] [2022-10-05T15:46:35.124Z] Node Version:  v16.17.0
+[debug] [2022-10-05T15:46:35.125Z] Time:          Wed Oct 05 2022 12:46:35 GMT-0300 (hora de la Guayana Francesa)
+[debug] [2022-10-05T15:46:35.125Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-10-05T15:46:35.132Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-10-05T15:46:35.132Z] > authorizing via signed-in user (museochoconticket@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\fsepulveda\Documents\chocon-react\chocon-ticket
+
+[debug] [2022-10-05T15:47:37.257Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\fsepulveda\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2022-10-05T15:47:50.787Z] ----------------------------------------------------------------------
+[debug] [2022-10-05T15:47:50.788Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\fsepulveda\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-10-05T15:47:50.789Z] CLI Version:   11.13.0
+[debug] [2022-10-05T15:47:50.789Z] Platform:      win32
+[debug] [2022-10-05T15:47:50.789Z] Node Version:  v16.17.0
+[debug] [2022-10-05T15:47:50.790Z] Time:          Wed Oct 05 2022 12:47:50 GMT-0300 (hora de la Guayana Francesa)
+[debug] [2022-10-05T15:47:50.790Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-10-05T15:47:50.796Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-10-05T15:47:50.797Z] > authorizing via signed-in user (museochoconticket@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\fsepulveda\Documents\chocon-react\chocon-ticket
+
+[debug] [2022-10-05T15:48:04.765Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\fsepulveda\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)
+[error] 
+[error] Error: An unexpected error has occurred.
