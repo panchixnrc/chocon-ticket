@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Ticket from "../components/Ticket";
 import { AppContext } from "../context/Provider";
 
@@ -23,11 +23,11 @@ const Lista = () => {
   };
 
   return (
-    <div className="overflow-y-scroll my-3">
-      <h1 className="text-3xl text-center my-5 text-primary font-bold">
-        Lista de tickets
-      </h1>
-      <div className="w-8/12 m-auto grid gap-4">
+    <div className="overflow-y-scroll my-3 grid grid-flow-row h-screen">
+      <div className="w-8/12 m-auto grid gap-4 h-fit row-span-1">
+        <h1 className="text-3xl text-center my-5 text-primary font-bold">
+          Lista de tickets
+        </h1>
         <div className="bg-base-200 rounded-box text-center text-xl h-32">
           <h3 className="p-1 font-bold">
             {fechaHoy.toLocaleDateString("en-GB")}
@@ -37,28 +37,31 @@ const Lista = () => {
             <span className="text-blue-800 font-bold"> {tickets.length}</span>
           </h3>
           <h3 className=" w-1/2  m-auto p-1 bg-white rounded">
-            Total del dia:{" "}
+            Total recaudacion del dia:{" "}
             <span className="text-green-500 font-bold">
               $ {calcularTotal()}
             </span>
           </h3>
         </div>
-        {cargandoTickets && (
+      </div>
+      <div className="w-8/12 m-auto grid gap-4 row-span-3 mt-4">
+        {cargandoTickets ? (
           <div className="bg-base-200 text-center text-3xl p-5 font-bold">
             Cargando tickets...
           </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 ">
+            {tickets.map((ticket) => (
+              <Ticket
+                key={ticket.id}
+                numero={ticket.id}
+                total={ticket.total}
+                cantidades={ticket.cantidades}
+                fecha={ticket.fecha}
+              />
+            ))}
+          </div>
         )}
-        <div className="grid grid-cols-1 gap-4 ">
-          {tickets?.map((ticket) => (
-            <Ticket
-              key={ticket.id}
-              numero={ticket.id}
-              total={ticket.total}
-              cantidades={ticket.cantidades}
-              fecha={ticket.fecha}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );

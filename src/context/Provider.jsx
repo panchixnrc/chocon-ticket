@@ -31,15 +31,28 @@ const Provider = ({ children }) => {
   const [enviando, setEnviando] = useState(false);
   const [logeado, setLogeado] = useState(false);
   const [errorLogin, setErrorLogin] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [tickets, setTickets] = useState([]);
+  const [selecionados, setSelecionados] = useState([]);
   const [cargandoTickets, setCargandoTickets] = useState(false);
+
   const ticketsCollectionRef = collection(
     db,
     `${fechaHoy.getDate()}-${fechaHoy.getMonth() + 1}-${fechaHoy.getFullYear()}`
   );
 
   const navigate = useNavigate();
+
+  const agregarSelecionados = (selecionado) => {
+    let target = selecionados.filter(
+      (item) => item.numero === selecionado.numero
+    );
+
+    if (target.length <= 0) {
+      setSelecionados([...selecionados, selecionado]);
+      console.log(selecionados);
+    }
+  };
 
   const login = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -161,6 +174,7 @@ const Provider = ({ children }) => {
         logout,
         loading,
         resetPassword,
+        agregarSelecionados,
       }}
     >
       {children}

@@ -4,12 +4,36 @@ import { AppContext } from "../context/Provider";
 
 const Ticket = ({ numero, cantidades, total, fecha }) => {
   const context = useContext(AppContext);
-  const { precios, calcularTotal } = context;
+  const { agregarSelecionados } = context;
+  const [select, setSelect] = useState(false);
+
+  const handleSelect = () => {
+    if (select) {
+      let newSeleccionado = {
+        numero: numero,
+        cantidades: cantidades,
+        total: total,
+        fecha: fecha,
+      };
+      agregarSelecionados(newSeleccionado);
+    } /*  else {
+      removerSelecionados(numero);
+    } */
+  };
 
   return (
     <div className="collapse border border-base-300 bg-base-100 rounded-box collapse-arrow min-h-fit">
-      <input type="checkbox" />
       <div className="collapse-title text-xl font-medium">
+        <input
+          onClick={() => {
+            handleSelect();
+            setSelect(!select);
+          }}
+          type="checkbox"
+          checked={select}
+          className="checkbox"
+        />
+
         <div className="flex justify-around">
           <h2>{fecha.toDate().toLocaleString("en-GB")}</h2>
           <div>
