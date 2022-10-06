@@ -10,7 +10,7 @@ const RutaProtegida = ({ children }) => {
   if (loading) {
     return <h1 className="text-4xl text-center m-auto">Cargando...</h1>;
   }
-  if (!user) return <div>{navigate("/")}</div>;
+  if (!user) return <div>{navigate("/login")}</div>;
   return <>{children}</>;
 };
 

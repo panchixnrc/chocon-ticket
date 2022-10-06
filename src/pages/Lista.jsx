@@ -1,21 +1,30 @@
 import React, { useContext, useEffect } from "react";
 import Ticket from "../components/Ticket";
 import { AppContext } from "../context/Provider";
+import { Link } from "react-router-dom";
 
 const Lista = () => {
   const context = useContext(AppContext);
-  const { tickets, fechaHoy, getTickets, setCargandoTickets, cargandoTickets } =
-    context;
+  const {
+    tickets,
+    fechaHoy,
+    getTickets,
+    setCargandoTickets,
+    cargandoTickets,
+    selecionados,
+    setImprimiendo,
+    setSelecionados,
+  } = context;
 
   useEffect(() => {
     if (tickets.length < 0) {
       setCargandoTickets(true);
     }
-    getTickets();
+    setImprimiendo(false);
+    setSelecionados([]);
   }, []);
 
   const calcularTotal = () => {
-    console.log(tickets);
     let totalSum = tickets.reduce((sum, ticket) => {
       return sum + ticket.total;
     }, 0);
@@ -53,13 +62,32 @@ const Lista = () => {
           <div className="grid grid-cols-1 gap-4 ">
             {tickets.map((ticket) => (
               <Ticket
+                id={ticket.id}
                 key={ticket.id}
-                numero={ticket.id}
+                numero={ticket.numero}
                 total={ticket.total}
                 cantidades={ticket.cantidades}
                 fecha={ticket.fecha}
               />
             ))}
+          </div>
+        )}
+        {selecionados.length > 0 && (
+          <div className="toast toast-end mb-8 mr-2">
+            <div className="alert bg-primary-focus">
+              <div className="flex flex-col text-white">
+                <Link
+                  onClick={() => {
+                    setImprimiendo(true);
+                  }}
+                  to={"/imprimir"}
+                  className="font-bold btn btn-info bg-white hover:bg-primary-content hover:border-primary-content hover:text-white"
+                >
+                  Imprimir
+                </Link>
+                <span>{`${selecionados.length} tickets selecionados`}</span>
+              </div>
+            </div>
           </div>
         )}
       </div>

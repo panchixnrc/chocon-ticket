@@ -6,17 +6,24 @@ import { AppContext } from "../context/Provider";
 
 const Layout = ({ children }) => {
   const context = useContext(AppContext);
-  const { user, loading } = context;
-
+  const { user, imprimiendo } = context;
+  /*  if (imprimiendo) {
+    return (
+      <div className="font-sans h-screen flex flex-col justify-between">
+        {children};
+      </div>
+    );
+  } else { */
   return (
     <div className="font-sans h-screen flex flex-col justify-between">
-      {user && <Navbar />}
-      {user && <Sidebar />}
+      {user ? <Navbar /> : null}
+      {user && !imprimiendo ? <Sidebar /> : null}
 
       {children}
       <Footer className="" />
     </div>
   );
+  /*   } */
 };
 
 export default Layout;

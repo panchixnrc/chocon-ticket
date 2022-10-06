@@ -9,6 +9,7 @@ import RegistroUsuario from "./pages/RegistroUsuario";
 import Login from "./pages/Login";
 import RutaProtegida from "./pages/RutaProtegida";
 import Recuperar from "./pages/Recuperar";
+import Imprimir from "./pages/Imprimir";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/imprimir" element={<Imprimir />} />
             <Route path="/recuperar" element={<Recuperar />} />
             <Route
               path="/registro-usuario"

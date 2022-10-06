@@ -26,9 +26,9 @@ const Login = () => {
   };
 
   return (
-    <div className="h-full bg-base-200 grid grid-rows-4 place-items-center">
+    <div className="h-full bg-base-200 grid grid-rows-4 place-items-center ">
       <h1 className="text-4xl font-bold text-primary">Ingreso al sistema</h1>
-      <div className="w-6/12 m-auto p-8 bg-base-100 rounded-box row-span-3">
+      <div className="w-6/12 mx-auto p-8 bg-base-100 rounded-box row-span-3 mb-10">
         <div className="form-control">
           <label className="label">
             <span className="label-text italic text-lg">Ingrese su email</span>
@@ -94,13 +94,13 @@ const Login = () => {
             Recuperar contraseña
           </Link>
 
-          {error && (
+          {errorLogin && (
             <div className="toast">
               <div className="alert alert-info bg-red-500 text-white font-bold mb-8">
                 <div>
                   <span className="flex items-center">
                     <MdDangerous className="mr-2" size={"1.3rem"} />
-                    {error}
+                    {errorLogin}
                   </span>
                 </div>
               </div>

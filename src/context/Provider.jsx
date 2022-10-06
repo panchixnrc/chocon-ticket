@@ -5,6 +5,9 @@ import {
   addDoc,
   query,
   orderBy,
+  deleteDoc,
+  doc,
+  onSnapshot,
 } from "firebase/firestore";
 import { db, auth } from "../firebase/firebase-config";
 import {
@@ -32,6 +35,7 @@ const Provider = ({ children }) => {
   const [logeado, setLogeado] = useState(false);
   const [errorLogin, setErrorLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [imprimiendo, setImprimiendo] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [selecionados, setSelecionados] = useState([]);
   const [cargandoTickets, setCargandoTickets] = useState(false);
@@ -48,9 +52,20 @@ const Provider = ({ children }) => {
       (item) => item.numero === selecionado.numero
     );
 
-    if (target.length <= 0) {
-      setSelecionados([...selecionados, selecionado]);
-      console.log(selecionados);
+    if (target.length === 0) {
+      let newSeleccionados = [...selecionados];
+      newSeleccionados.push(selecionado);
+      setSelecionados(newSeleccionados);
+    }
+  };
+
+  const removerSelecionados = (numero) => {
+    let index = selecionados.map((item) => item.numero).indexOf(numero);
+    if (index !== -1) {
+      let newSeleccionados = [...selecionados];
+      let borrado = newSeleccionados.splice(index, 1);
+      setSelecionados(newSeleccionados);
+      console.log(borrado);
     }
   };
 
@@ -63,6 +78,9 @@ const Provider = ({ children }) => {
       })
       .catch((error) => {
         setErrorLogin(error.message);
+        setTimeout(() => {
+          setErrorLogin(false);
+        }, 2000);
       });
   };
 
@@ -80,11 +98,15 @@ const Provider = ({ children }) => {
     getDocs(q).then((snapshot) => {
       let newTickets = [];
       snapshot.docs.forEach((doc) => {
-        newTickets.push(doc.data());
+        newTickets.push({ ...doc.data(), id: doc.id });
       });
       setTickets(newTickets);
       setCargandoTickets(false);
     });
+  };
+
+  const onGetTickets = (callback) => {
+    onSnapshot(ticketsCollectionRef, callback);
   };
 
   const calcularTotal = (jubilados, menores, regulares, paleo) => {
@@ -99,7 +121,7 @@ const Provider = ({ children }) => {
   const agregarTicket = async (jubilados, menores, regular, paleontologos) => {
     console.log(jubilados, menores, regular, paleontologos);
     let newTicket = {
-      id: Date.now(),
+      numero: Date.now(),
       total: calcularTotal(jubilados, menores, regular, paleontologos),
       cantidades: {
         jubilados: parseInt(jubilados),
@@ -117,6 +139,19 @@ const Provider = ({ children }) => {
         setEnviado(false);
       }, 2500);
     });
+  };
+
+  const borrarTicket = async (id) => {
+    await deleteDoc(
+      doc(
+        db,
+        `${fechaHoy.getDate()}-${
+          fechaHoy.getMonth() + 1
+        }-${fechaHoy.getFullYear()}`,
+        id
+      )
+    );
+    console.log("aca");
   };
 
   const handleCambioPrecios = (tipo, precio) => {
@@ -145,11 +180,8 @@ const Provider = ({ children }) => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      onGetTickets(getTickets);
     });
-  }, []);
-
-  useEffect(() => {
-    getTickets();
   }, []);
 
   return (
@@ -175,6 +207,12 @@ const Provider = ({ children }) => {
         loading,
         resetPassword,
         agregarSelecionados,
+        selecionados,
+        removerSelecionados,
+        setImprimiendo,
+        imprimiendo,
+        setSelecionados,
+        borrarTicket,
       }}
     >
       {children}
