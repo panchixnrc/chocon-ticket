@@ -3,7 +3,7 @@ import copade from "../assets/copade-logo.png";
 
 const Footer = () => {
   return (
-    <div className="w-full bg-primary h-12 z-10 flex justify-end items-center text-white pr-10">
+    <div className="w-full bg-primary h-12 z-10 flex justify-end items-center text-white pr-10 print:hidden">
       Desarrollado por{" "}
       <a
         href="https://fsepulveda.vercel.app/"

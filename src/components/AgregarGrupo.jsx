@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import { AppContext } from "../context/Provider";
 
@@ -17,7 +17,12 @@ const AgregarGrupo = () => {
     enviado,
     enviando,
     setEnviando,
+    setFechaHoy,
   } = context;
+
+  useEffect(() => {
+    setFechaHoy(new Date());
+  }, []);
 
   const checkVacios = () => {
     let sum =
@@ -120,7 +125,7 @@ const AgregarGrupo = () => {
       </button>
       {errorVacios && (
         <div className="toast">
-          <div className="alert alert-success bg-yellow-600 text-white">
+          <div className="alert alert-success bg-yellow-600 text-white mb-10">
             <div>
               <span>No se pueden agregar tickets vacios.</span>
             </div>
@@ -129,7 +134,7 @@ const AgregarGrupo = () => {
       )}
       {enviado && (
         <div className="toast">
-          <div className="alert alert-success bg-green-600 text-white">
+          <div className="alert alert-success bg-green-600 text-white mb-10">
             <div>
               <span>Ticket agregado correctamente</span>
             </div>

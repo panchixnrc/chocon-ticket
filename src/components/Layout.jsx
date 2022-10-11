@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
     );
   } else { */
   return (
-    <div className="font-sans h-screen flex flex-col justify-between">
+    <div className="font-sans h-screen flex flex-col justify-between ">
       {user ? <Navbar /> : null}
       {user && !imprimiendo ? <Sidebar /> : null}
 

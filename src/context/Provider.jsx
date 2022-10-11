@@ -184,6 +184,10 @@ const Provider = ({ children }) => {
     });
   }, []);
 
+  useEffect(() => {
+    getTickets();
+  }, [fechaHoy]);
+
   return (
     <AppContext.Provider
       value={{
@@ -194,6 +198,7 @@ const Provider = ({ children }) => {
         handleCambioPrecios,
         agregarTicket,
         fechaHoy,
+        setFechaHoy,
         getTickets,
         enviado,
         setEnviando,

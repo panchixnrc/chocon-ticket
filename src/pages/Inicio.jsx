@@ -17,15 +17,15 @@ const Inicio = () => {
           <ul className="text-accent-content grid gap-4">
             <li>
               Para agregar tickets ve a la pestaña de{" "}
-              <span className="italic font-bold">Ingreso</span>
+              <span className="italic font-bold">Agregar</span>
             </li>
             <li>
               Para ver la lista y el total diario ingrese en{" "}
-              <span className="italic font-bold">Registro</span>{" "}
+              <span className="italic font-bold">Ver lista</span>{" "}
             </li>
             <li>
               Para modificar un precio ingrese en la pestaña{" "}
-              <span className="italic font-bold">Precios</span>
+              <span className="italic font-bold">Ver precios</span>
             </li>
           </ul>
         </div>

@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full min-h-16  bg-primary text-white grid grid-cols-3 place-items-center z-10">
+    <div className="w-full min-h-16  bg-primary text-white grid grid-cols-3 place-items-center z-10 print:hidden">
       <Link className="" to={"/"}>
         <h1 className="text-center text-2xl ml-4 h-full">Control de Ingreso</h1>
       </Link>

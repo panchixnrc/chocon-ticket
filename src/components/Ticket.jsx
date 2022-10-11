@@ -4,10 +4,22 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 
 import { AppContext } from "../context/Provider";
 
-const Ticket = ({ id, numero, cantidades, total, fecha }) => {
+const Ticket = ({ id, numero, cantidades, total, fecha, disableCollapse }) => {
   const context = useContext(AppContext);
-  const { agregarSelecionados, removerSelecionados, borrarTicket } = context;
+  const { agregarSelecionados, removerSelecionados, borrarTicket, fechaHoy } =
+    context;
   const [select, setSelect] = useState(false);
+  const [fechaActual, setFechaActual] = useState(new Date());
+
+  const manejarFechas = () => {
+    fechaActual.setHours(0, 0, 0, 0);
+    fechaHoy.setHours(0, 0, 0, 0);
+
+    if (fechaActual.getTime() === fechaHoy.getTime()) {
+      return true;
+    }
+    return false;
+  };
 
   const handleDelete = () => {
     if (window.confirm("Quiere eliminar este ticket?")) {
@@ -33,14 +45,16 @@ const Ticket = ({ id, numero, cantidades, total, fecha }) => {
   return (
     <div className="flex justify-between items-center w-full">
       <div className="flex">
-        <button
-          onClick={() => {
-            handleDelete();
-          }}
-          className={`bg-red-600 border-red-600 mr-2 border p-1 rounded-box`}
-        >
-          <RiDeleteBin2Line className="text-white " size={"1.5rem"} />
-        </button>
+        {manejarFechas() && (
+          <button
+            onClick={() => {
+              handleDelete();
+            }}
+            className={`bg-red-600 border-red-600 mr-2 border p-1 rounded-box`}
+          >
+            <RiDeleteBin2Line className="text-white " size={"1.5rem"} />
+          </button>
+        )}
         <button
           onClick={() => {
             handleSelect();
@@ -57,7 +71,7 @@ const Ticket = ({ id, numero, cantidades, total, fecha }) => {
         </button>
       </div>
       <div className="collapse border border-base-300 bg-base-100 rounded-box collapse-arrow min-h-fit w-full">
-        <input type="checkbox" className="peer" />
+        {!disableCollapse && <input type="checkbox" className="peer" />}
         <div className="collapse-title text-xl font-medium">
           <div className="flex justify-around">
             <h2>{fecha.toDate().toLocaleString("en-GB")}</h2>
