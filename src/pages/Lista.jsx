@@ -71,6 +71,7 @@ const Lista = () => {
               onCalendarOpen={handleOpenDatePicker}
               customInput={<ExampleCustomInput />}
               calendarClassName="z-10"
+              maxDate={new Date()}
             />
           </div>
           <div className="bg-white rounded w-1/2 m-auto my-4">
