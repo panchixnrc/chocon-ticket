@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import TicketImprimible from "../components/TicketImprimible";
 import { AppContext } from "../context/Provider";
 
@@ -8,12 +9,15 @@ const Imprimir = () => {
 
   const [tickets, setTickets] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setTickets(selecionados);
     setImprimiendo(true);
     if (!dialog) {
       setTimeout(() => {
         window.print();
+        navigate("/lista");
       }, 1000);
     }
   }, []);

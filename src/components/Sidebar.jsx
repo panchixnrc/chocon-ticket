@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="h-screen w-auto px-2 absolute bg-primary-focus grid grid-rows-3">
+    <div className="h-screen w-auto px-2 absolute bg-primary-focus grid grid-rows-3 print:hidden">
       <div></div>
 
       <div>

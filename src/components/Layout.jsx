@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
   return (
     <div className="font-sans h-screen flex flex-col justify-between ">
       {user ? <Navbar /> : null}
-      {user && !imprimiendo ? <Sidebar /> : null}
+      {user ? <Sidebar /> : null}
 
       {children}
       <Footer className="" />
