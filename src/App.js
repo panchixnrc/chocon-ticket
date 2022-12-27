@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import RutaProtegida from "./pages/RutaProtegida";
 import Recuperar from "./pages/Recuperar";
 import Imprimir from "./pages/Imprimir";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Provider>
         <Layout>
           <Routes>
+            <Route path="/test" element={<Test />} />
             <Route path="/login" element={<Login />} />
             <Route path="/imprimir" element={<Imprimir />} />
             <Route path="/recuperar" element={<Recuperar />} />
