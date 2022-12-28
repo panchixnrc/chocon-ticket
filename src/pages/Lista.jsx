@@ -113,7 +113,7 @@ const Lista = () => {
             ))}
           </div>
         )}
-        {selecionados.length > 0 && (
+        {selecionados?.length > 0 && (
           <div className="toast toast-end mb-8 mr-2">
             <div className="alert bg-primary-focus">
               <div className="flex flex-col text-white">
@@ -126,7 +126,10 @@ const Lista = () => {
                 >
                   Imprimir
                 </Link>
-                <span>{`${selecionados.length} tickets selecionados`}</span>
+                <span>
+                  Ticket N° <strong> {`${selecionados[0].numero} `}</strong>{" "}
+                  selecionado.
+                </span>
               </div>
             </div>
           </div>

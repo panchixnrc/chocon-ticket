@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TbPrinter } from "react-icons/tb";
 import { RiDeleteBin2Line } from "react-icons/ri";
 
@@ -6,10 +6,27 @@ import { AppContext } from "../context/Provider";
 
 const Ticket = ({ id, numero, cantidades, total, fecha, disableCollapse }) => {
   const context = useContext(AppContext);
-  const { agregarSelecionados, removerSelecionados, borrarTicket, fechaHoy } =
-    context;
+  const {
+    agregarSelecionados,
+    removerSelecionados,
+    borrarTicket,
+    fechaHoy,
+    selecionados,
+  } = context;
   const [select, setSelect] = useState(false);
   const [fechaActual, setFechaActual] = useState(new Date());
+
+  useEffect(() => {
+    if (selecionados.length > 0) {
+      if (selecionados[0].numero === numero) {
+        setSelect(true);
+      } else {
+        setSelect(false);
+      }
+    } else {
+      setSelect(false);
+    }
+  }, [selecionados]);
 
   const manejarFechas = () => {
     fechaActual.setHours(0, 0, 0, 0);
@@ -26,20 +43,28 @@ const Ticket = ({ id, numero, cantidades, total, fecha, disableCollapse }) => {
       borrarTicket(id);
     }
   };
+  console.log(selecionados, selecionados.length, select);
 
   const handleSelect = () => {
-    if (!select) {
-      let newSeleccionado = {
-        numero: numero,
-        cantidades: cantidades,
-        total: total,
-        fecha: fecha,
-      };
+    let newSeleccionado = {
+      numero: numero,
+      cantidades: cantidades,
+      total: total,
+      fecha: fecha,
+    };
+    if (!select && selecionados.length === 0) {
+      console.log("asd");
       agregarSelecionados(newSeleccionado);
+      setSelect(!select);
+    } else if (!select && selecionados.length > 0) {
+      removerSelecionados();
+      agregarSelecionados(newSeleccionado);
+      console.log("xd");
+      setSelect(!select);
     } else {
-      removerSelecionados(numero);
+      removerSelecionados();
+      setSelect(false);
     }
-    setSelect(!select);
   };
 
   return (
@@ -74,7 +99,7 @@ const Ticket = ({ id, numero, cantidades, total, fecha, disableCollapse }) => {
         {!disableCollapse && <input type="checkbox" className="peer" />}
         <div className="collapse-title text-xl font-medium">
           <div className="flex justify-around">
-            <h2>{fecha.toDate().toLocaleString("en-GB")}</h2>
+            <h2>{fecha}</h2>
             <div>
               <h2>
                 Numero <strong># {numero}</strong>{" "}

@@ -7,7 +7,7 @@ const TicketImprimible = ({ numero, cantidades, total, fecha }) => {
   const { precios } = context;
 
   return (
-    <div className=" w-full flex flex-col p-4">
+    <div className="flex w-full flex-col p-4">
       <div className="w-full flex items-center justify-center my-4">
         <img className="w-[80px]" src={logoChocon} alt="" srcset="" />
         Museo Municipal Ernesto Bachmann

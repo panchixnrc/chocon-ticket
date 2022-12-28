@@ -17,7 +17,7 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
+import moment from "moment/moment";
 export const AppContext = createContext();
 export const useMyContext = () => useContext(AppContext);
 
@@ -48,7 +48,7 @@ const Provider = ({ children }) => {
   const navigate = useNavigate();
 
   const agregarSelecionados = (selecionado) => {
-    let target = selecionados.filter(
+    /* let target = selecionados.filter(
       (item) => item.numero === selecionado.numero
     );
 
@@ -56,17 +56,18 @@ const Provider = ({ children }) => {
       let newSeleccionados = [...selecionados];
       newSeleccionados.push(selecionado);
       setSelecionados(newSeleccionados);
-    }
+    } */
+    setSelecionados([selecionado]);
   };
 
   const removerSelecionados = (numero) => {
-    let index = selecionados.map((item) => item.numero).indexOf(numero);
+    /* let index = selecionados.map((item) => item.numero).indexOf(numero);
     if (index !== -1) {
       let newSeleccionados = [...selecionados];
       let borrado = newSeleccionados.splice(index, 1);
       setSelecionados(newSeleccionados);
-      console.log(borrado);
-    }
+      console.log(borrado); */
+    setSelecionados([]);
   };
 
   const login = (email, password) => {
@@ -119,7 +120,6 @@ const Provider = ({ children }) => {
   };
 
   const agregarTicket = async (jubilados, menores, regular, paleontologos) => {
-    console.log(jubilados, menores, regular, paleontologos);
     let newTicket = {
       numero: Date.now(),
       total: calcularTotal(jubilados, menores, regular, paleontologos),
@@ -129,7 +129,7 @@ const Provider = ({ children }) => {
         regulares: parseInt(regular),
         paleontologos: parseInt(paleontologos),
       },
-      fecha: new Date(),
+      fecha: moment(new Date()).format("DD/MM/YYYY"),
     };
 
     await addDoc(ticketsCollectionRef, newTicket).then((res) => {
@@ -137,6 +137,8 @@ const Provider = ({ children }) => {
       setEnviado(true);
       setTimeout(() => {
         setEnviado(false);
+        setSelecionados([newTicket]);
+        navigate("/imprimir");
       }, 2500);
     });
   };
@@ -151,7 +153,6 @@ const Provider = ({ children }) => {
         id
       )
     );
-    console.log("aca");
   };
 
   const handleCambioPrecios = (tipo, precio) => {
